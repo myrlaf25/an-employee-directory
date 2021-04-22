@@ -5,8 +5,10 @@ function EmployeeCard(props) {
     return (
       <>
         <div className="card-group"/>
+        {props.map((item)=>(     
             <div className="card"/>
-                <img className="card-img-top" src={props.image} alt={props.name}/>
+                <img key={item.id} className="card-img-top" src={item.image} alt={item.name}/>
+                ))}
                     <div className="card-body">
                         <p className="card-text">{props.name}</p>
                         <p className="card-text">{props.phone}:</p>
