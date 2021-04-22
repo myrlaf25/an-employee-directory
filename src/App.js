@@ -1,4 +1,6 @@
 import React from "react";
+import EmployeeCard from "./EmployeeCard";
+import SearchForm from "./SearchForm";
 import API from "./utils/API";
 
 class App extends React.Component {
@@ -15,10 +17,33 @@ class App extends React.Component {
     this.setState({ employees: data.results });
   };
 
+  handleInputChange = event => {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({
+      [name]: value
+    });
+  };
+
+   // When the form is submitted, search the randomuser API for `this.state.search`
+   handleFormSubmit = event => {
+    event.preventDefault();
+    this.getEmployees(this.state.search);
+  };
+
   render() {
     console.log(this.state);
-    return <h1>Employees go here</h1>;
+    return (
+        <div>
+          <SearchForm
+            search={this.state.search}
+            handleFormSubmit={this.handleFormSubmit}
+            handleInputChange={this.handleInputChange}
+          />
+          <EmployeeCard results={this.state.results} />
+        </div>
+      );
+    }
   }
-}
 
 export default App;
