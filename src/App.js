@@ -1,6 +1,6 @@
 import React from "react";
-import EmployeeCard from "./EmployeeCard";
-import SearchForm from "./SearchForm";
+import EmployeeCard from "./components/EmployeeCard.js";
+import SearchForm from "./components/SearchForm";
 import API from "./utils/API";
 
 class App extends React.Component {
