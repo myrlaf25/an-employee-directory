@@ -1,13 +1,15 @@
 .card-main {
     text-align: center;
-    width: 50vw;
-    display:grid;
-    grid-gap: 1rem;
     padding: 25px;
-    
+    width: 30%;
+}
+.card {
+    margin:0 auto;
+    display:flex;
+    flex-wrap: wrap;
 }
 .card img {
-    width: 75px;
+    width: 80px;
 }
 .card-body {
     background: #64485C;
@@ -15,4 +17,9 @@
     border-style: groove;
     border-width: 10px;
     color: #ADADAD;
+    width: fit-content;
+    padding: 5px;
+    margin: 25px;
+    
+    
 }

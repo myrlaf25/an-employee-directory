@@ -5,7 +5,7 @@ import "../styles/EmployeeCard.css";
 function EmployeeCard({ name, image, phone, email, dob }) {
     return (
         <>
-        <div className="card-main">
+        
             <div key={name}>
             <div className="card-body">
             <img src={image} alt={name} />
@@ -15,7 +15,7 @@ function EmployeeCard({ name, image, phone, email, dob }) {
                         <p className="card-text">DOB: {dob}</p>
                     </div>
             </div>
-            </div>
+          
             </>
      )}
 
