@@ -6,19 +6,28 @@ function EmployeeCard({ name, image, phone, email, dob }) {
     return (
         <>
 
-            <div key={name} className="card-group">
-                <div className="card">
-                    <div className="card-body">
-                        <img className="card-img-top" src={image} alt={name} />
-                        <h5 className="card-title">{name}</h5>
-                        <p className="card-text">Phone: {phone}</p>
-                        <p className="card-text">Email: {email}</p>
-                        <p className="card-text">DOB: {dob}</p>
-                    </div>
-                    
+            <div key={name} className="card">
+                <div className="img-container">
+                    <img alt={name} src={image} />
                 </div>
-            </div>
+                <div className="content">
+                    <ul>
+                        <li>
+                            <h5>{name}</h5>
+                        </li>
+                        <li>
+                            <strong>Phone:</strong> {phone}
+                        </li>
+                        <li>
+                            <strong>Email:</strong> {email}
+                        </li>
+                        <li>
+                            <strong>DOB:</strong> {dob}
+                        </li>
+                    </ul>
+                </div>
 
+            </div>
 
         </>
     )

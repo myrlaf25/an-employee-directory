@@ -15,7 +15,7 @@ function SearchForm(props) {
           placeholder="Search for Employee"
           id="search"
         />
-        <p className="p"> Start you search by beginning to type the name of the employee, an email address, birth year, or phone number: e.g. (252)-808-8284. The app will begin your search automatically. </p>
+        <p className="p"> e.g., name, email, birth year, or phone number. The search begins on input.</p>
       </div>
     </form>
   );

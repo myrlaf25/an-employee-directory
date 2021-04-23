@@ -2,6 +2,7 @@ import React from "react";
 import EmployeeCard from "./components/EmployeeCard";
 import SearchForm from "./components/SearchForm";
 import Header from "./components/Header";
+import Wrapper from "./components/Wrapper";
 import API from "./utils/API";
 
 class App extends React.Component {
@@ -18,7 +19,7 @@ class App extends React.Component {
     getEmployees = async () => {
         const { data } = await API.getUsers();
         const employees = data.results.map(item => ({
-            image: item.picture.medium,
+            image: item.picture.large,
             name: `${item.name.first} ${item.name.last}`,
             email: item.email,
             phone: item.cell,
@@ -28,9 +29,9 @@ class App extends React.Component {
         this.setState({ employees });
     };
     filterEmployees = (employee) => {
-        for (const key in employee){
-            if(key === "image") continue;
-            if (employee[key].includes(this.state.search)){
+        for (const key in employee) {
+            if (key === "image") continue;
+            if (employee[key].toLowerCase().includes(this.state.search.toLocaleLowerCase())) {
                 return true;
             }
         }
@@ -51,10 +52,10 @@ class App extends React.Component {
     };
 
     // When the form is submitted, search the randomuser API for `this.state.search`
-    handleFormSubmit = event => {
-        event.preventDefault();
-        this.filterEmployees();
-    };
+    // handleFormSubmit = event => {
+    //     event.preventDefault();
+    //     this.filterEmployees();
+    // };
 
     render() {
         // console.log(this.state);
@@ -62,16 +63,18 @@ class App extends React.Component {
         return (
             <>
             <div>
-            <Header />
+                <Header />
             </div>
-                <SearchForm handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} search={this.state.search} />
-                
-                        {employees.length === 0 ? (
-                            <td> No employees!</td>
-                        ) : (
-                            employees.filter(this.filterEmployees).map((employee => <EmployeeCard {...employee} />)
+            <SearchForm handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} search={this.state.search} />
+            <Wrapper>
+
+                    {employees.length === 0 ? (
+                        <td> No employees!</td>
+                    ) : (
+                        employees.filter(this.filterEmployees).map((employee => <EmployeeCard {...employee} />)
                         ))}
-                    
+                      
+                </Wrapper>
             </>
         );
 
