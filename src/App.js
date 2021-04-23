@@ -1,12 +1,13 @@
 import React from "react";
-// import EmployeeCard from "./components/EmployeeCard.js";
+import EmployeeCard from "./components/EmployeeCard";
 import SearchForm from "./components/SearchForm";
+import Header from "./components/Header";
 import API from "./utils/API";
 
 class App extends React.Component {
     state = {
         employees: [],
-        search:""
+        search: ""
 
     };
 
@@ -17,7 +18,7 @@ class App extends React.Component {
     getEmployees = async () => {
         const { data } = await API.getUsers();
         const employees = data.results.map(item => ({
-            image: item.picture.thumbnail,
+            image: item.picture.medium,
             name: `${item.name.first} ${item.name.last}`,
             email: item.email,
             phone: item.cell,
@@ -26,12 +27,19 @@ class App extends React.Component {
         }))
         this.setState({ employees });
     };
-    filterEmployees = () => {
-        console.log(this.state.employees)
-        const employees =this.state.employees.filter(employee => employee.name.includes(this.state.search))
-        this.setState({employees})
-        
-       
+    filterEmployees = (employee) => {
+        for (const key in employee){
+            if(key === "image") continue;
+            if (employee[key].includes(this.state.search)){
+                return true;
+            }
+        }
+        return false;
+        // console.log(this.state.employees)
+        // const employees = this.state.employees.filter(employee => employee.name.includes(this.state.search))
+        // this.setState({ employees })
+
+
     };
 
     handleInputChange = event => {
@@ -53,31 +61,17 @@ class App extends React.Component {
         const { employees } = this.state;
         return (
             <>
-            <SearchForm handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} search={this.state.search}/>
-            <table>
-                <thead>
-                    <th>image</th>
-                    <th>name</th>
-                    <th>email</th>
-                    <th>phone</th>
-                    <th>DOB</th>
-                </thead>
-                <tbody>
-                {employees.length === 0 ? (
-                    <td> No employees!</td>
-                ) : (
-                    employees.map((employee =>
-                    (<tr>
-                        <td><img src={employee.image} alt={''}/></td>
-                        <td>{employee.name}</td>
-                        <td>{employee.email}</td>
-                        <td>{employee.phone}</td>
-                        <td>{employee.dob}</td>
-                    </tr>
-                    ))))}
-                    </tbody>
-
-            </table>
+            <div>
+            <Header />
+            </div>
+                <SearchForm handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} search={this.state.search} />
+                
+                        {employees.length === 0 ? (
+                            <td> No employees!</td>
+                        ) : (
+                            employees.filter(this.filterEmployees).map((employee => <EmployeeCard {...employee} />)
+                        ))}
+                    
             </>
         );
 
@@ -85,4 +79,5 @@ class App extends React.Component {
 }
 
 export default App;
+
 

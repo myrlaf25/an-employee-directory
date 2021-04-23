@@ -1,0 +1,18 @@
+.card-main {
+    text-align: center;
+    width: 50vw;
+    display:flex;
+    justify-content: space-evenly;
+    padding: 25px;
+    position: static;
+}
+.card img {
+    width: 75px;
+}
+.card-body {
+    background: #64485C;
+    border-radius: 20px;
+    border-style: groove;
+    border-width: 10px;
+    color: #ADADAD;
+}

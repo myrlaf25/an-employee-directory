@@ -1,24 +1,23 @@
 import React from "react";
+import "../styles/EmployeeCard.css";
 
 
-function EmployeeCard(props) {
+function EmployeeCard({ name, image, phone, email, dob }) {
     return (
-     
-        <div className="card-group">
-        {props.map((result)=>(     
-            <div className="card">
-                <img key={result.id} className="card-img-top" src={result.images.original.url} alt={result.title}/>
-                    <div className="card-body">
-                        <p className="card-text">{result.name}</p>
-                        <p className="card-text">{result.phone}:</p>
-                        <p className="card-text">{result.email}</p>
-                        <p className="card-text">{result.dob}</p>
+        <>
+        <div className="card-main">
+            <div key={name}>
+            <div className="card-body">
+            <img src={image} alt={name} />
+                        <p className="card-text">Name: {name}</p>
+                        <p className="card-text">Phone: {phone}:</p>
+                        <p className="card-text">Email: {email}</p>
+                        <p className="card-text">DOB: {dob}</p>
                     </div>
-                    </div>
-                    ))}
             </div>
-                  
-    );
-}
+            </div>
+            </>
+     )}
+
 
 export default EmployeeCard;
