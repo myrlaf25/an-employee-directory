@@ -1,11 +1,13 @@
 import React from "react";
 // import EmployeeCard from "./components/EmployeeCard.js";
-// import SearchForm from "./components/SearchForm";
+import SearchForm from "./components/SearchForm";
 import API from "./utils/API";
 
 class App extends React.Component {
     state = {
         employees: [],
+        search:""
+
     };
 
     componentDidMount() {
@@ -16,7 +18,7 @@ class App extends React.Component {
         const { data } = await API.getUsers();
         const employees = data.results.map(item => ({
             image: item.picture.thumbnail,
-            name: `${item.name.first} ${item.name.first}`,
+            name: `${item.name.first} ${item.name.last}`,
             email: item.email,
             phone: item.cell,
             dob: item.dob.date,
@@ -24,11 +26,12 @@ class App extends React.Component {
         }))
         this.setState({ employees });
     };
-    filterEmployees = (employee) => {
-        if (employee.name.includes(this.state.search)) {
-            return true;
-        }
-        return false;
+    filterEmployees = () => {
+        console.log(this.state.employees)
+        const employees =this.state.employees.filter(employee => employee.name.includes(this.state.search))
+        this.setState({employees})
+        
+       
     };
 
     handleInputChange = event => {
@@ -42,13 +45,15 @@ class App extends React.Component {
     // When the form is submitted, search the randomuser API for `this.state.search`
     handleFormSubmit = event => {
         event.preventDefault();
-        this.getEmployees(this.state.search);
+        this.filterEmployees();
     };
 
     render() {
         // console.log(this.state);
         const { employees } = this.state;
         return (
+            <>
+            <SearchForm handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} search={this.state.search}/>
             <table>
                 <thead>
                     <th>image</th>
@@ -58,9 +63,10 @@ class App extends React.Component {
                     <th>DOB</th>
                 </thead>
                 <tbody>
-                {employees.length === 0 ? (<td> No employees!</td>
+                {employees.length === 0 ? (
+                    <td> No employees!</td>
                 ) : (
-                    employees.filter(this.filterEmployees).map((employee =>
+                    employees.map((employee =>
                     (<tr>
                         <td><img src={employee.image} alt={''}/></td>
                         <td>{employee.name}</td>
@@ -72,6 +78,7 @@ class App extends React.Component {
                     </tbody>
 
             </table>
+            </>
         );
 
     }
@@ -79,11 +86,3 @@ class App extends React.Component {
 
 export default App;
 
-// <div>
-        //   <SearchForm
-        //     search={this.state.search}
-        //     handleFormSubmit={this.handleFormSubmit}
-        //     handleInputChange={this.handleInputChange}
-        //   />
-        //   <EmployeeCard results={this.state.results} />
-        // </div>
