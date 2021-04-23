@@ -1,10 +1,10 @@
 .card-main {
     text-align: center;
     width: 50vw;
-    display:flex;
-    justify-content: space-evenly;
+    display:grid;
+    grid-gap: 1rem;
     padding: 25px;
-    position: static;
+    
 }
 .card img {
     width: 75px;
