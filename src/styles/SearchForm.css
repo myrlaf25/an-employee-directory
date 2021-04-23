@@ -14,3 +14,11 @@
     
    
 }
+.form p {
+    text-align: center;
+    width: 50%;
+    color: white;
+    margin-left: 350px;
+    font-size: small;
+
+}
