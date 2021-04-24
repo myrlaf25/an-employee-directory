@@ -1,4 +1,5 @@
 import React from "react";
+import moment from 'moment';
 import "../styles/EmployeeCard.css";
 
 
@@ -22,7 +23,7 @@ function EmployeeCard({ name, image, phone, email, dob }) {
                             <strong>Email:</strong> {email}
                         </li>
                         <li>
-                            <strong>DOB:</strong> {dob}
+                            <strong>DOB:</strong> {moment(dob).format('MM/DD/YYYY')}
                         </li>
                     </ul>
                 </div>
