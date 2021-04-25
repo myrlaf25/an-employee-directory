@@ -17,12 +17,12 @@ https://github.com/myrlaf25/an-employee-directory
 # Description
 Thsi application is an Employee Directory created with React.js. The application is broken into components that respond to the user events.
 
-<img src="public/employeedirectoryapp.png" alt="phot holder" width='75%' height='75%'></img>
+<img src="public/employeedirectoryapp.png" alt="phot holder" width='85%' height='85%'></img>
 
 # User Story
 * As a user, I want to be able to view my entore employee directory at once so that I have quick access to their information. 
 
-<img src="public/employeeInfoCard.png" alt="phot holder" width='60%' height='60%'></img>
+<img src="public/employeeInfoCard.png" alt="phot holder" width='50%' height='50%'></img>
 
 # Business Context
 An employer or even another employee would benefit from  beign able to view non-sensitive infromation about other employees. 
