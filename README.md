@@ -22,7 +22,7 @@ Thsi application is an Employee Directory created with React.js. The application
 # User Story
 * As a user, I want to be able to view my entore employee directory at once so that I have quick access to their information. 
 
-<img src="public/employeeInfoCard.png" alt="phot holder" width='80%' height='80%'></img>
+<img src="public/employeeInfoCard.png" alt="phot holder" width='60%' height='60%'></img>
 
 # Business Context
 An employer or even another employee would benefit from  beign able to view non-sensitive infromation about other employees. 
