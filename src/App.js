@@ -8,7 +8,8 @@ import API from "./utils/API";
 class App extends React.Component {
     state = {
         employees: [],
-        search: ""
+        search: "",
+        sort: true
 
     };
 
@@ -43,6 +44,28 @@ class App extends React.Component {
 
     };
 
+    sortByName = event => {
+        event.preventDefault();
+        // sort by value
+        //this function needs a prevent default
+        //this.state.data.sort((a, b) => a.timeM > b.timeM ? 1:-1)
+        const sortByName= this.state.employees.sort((a, b)=>{
+            //a less than b, then -1 and a will render before b
+        if(a.name < b.name){
+            return -1;
+        }
+        //a greater than b, then 1 and a will render after b
+        if(a.name > b.name){
+            return 1;
+        }else
+        //values are the same
+        return 0;
+    });
+        this.setState({resulst: sortByName})};
+        
+
+    
+
     handleInputChange = event => {
         const name = event.target.name;
         const value = event.target.value;
@@ -66,7 +89,11 @@ class App extends React.Component {
             <div>
                 <Header />
             </div>
-            <SearchForm handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} search={this.state.search} />
+            <SearchForm 
+            handleInputChange={this.handleInputChange} 
+            handleFormSubmit={this.handleFormSubmit} 
+            search={this.state.search} 
+            sortByName={this.sortByName} />
             <Wrapper>
 
                     {employees.length === 0 ? (
