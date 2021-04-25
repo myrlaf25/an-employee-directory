@@ -16,7 +16,7 @@ function SearchForm(props) {
           id="search"
         />
         <p className="p"> e.g., name, email, birth year, or phone number. The search begins on input.</p>
-        <button onClick={props.sortByName}>sort</button>
+        <button onClick={props.sortByName}>Sort Alphabetically</button>
       </div>
     </form>
   );
